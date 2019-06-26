@@ -1,7 +1,7 @@
 # react-use-fuse
 A tiny wrapper for the Fuse.js library fuzzy-search using React Hooks.
 
-## Usage
+## Example usage
 ```sh
 
 const customers = [
