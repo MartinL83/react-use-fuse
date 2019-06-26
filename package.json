@@ -4,11 +4,18 @@
   "description": "A tiny wrapper for the Fuse.js library fuzzy-search using React Hooks.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "microbundle ./src/index.js",
-    "dev": "microbundle watch ./src/index.js",
+    "build": "microbundle ./src/index.js --format cjs",
+    "dev": "microbundle watch ./src/index.js --format cjs",
     "test": "jest"
   },
-  "author": "Martin Lindgren",
+  "author": {
+    "name": "Martin Lindgren",
+    "email": "lindgren2d@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MartinL83/react-use-fuse"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": ">= 16",
@@ -18,11 +25,13 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react-hooks": "^1.0.4",
     "fuse.js": "^3.4.5",
     "jest": "^24.8.0",
+    "lodash.difference": "^4.5.0",
     "microbundle": "^0.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-hooks-testing-library": "^0.6.0"
+    "react-test-renderer": "^16.8.6"
   }
 }

@@ -1,6 +1,6 @@
-import { renderHook, act } from "react-hooks-testing-library";
-import _ from "lodash";
-import { useFuzzySearch } from "./index";
+import { renderHook, act } from "@testing-library/react-hooks";
+import difference from "lodash.difference";
+import useFuse from "./index";
 
 // Data to pass to search
 const data = [
@@ -21,7 +21,7 @@ const options = {
 describe("Fuzzy search: On init", () => {
   it("Should expose correct API", () => {
     // 'result.current' will contain search api methods
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     const exposedApi = result.current;
 
@@ -46,7 +46,7 @@ describe("Fuzzy search: On init", () => {
   });
 
   it("Should output provided input data on init", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
     const output = result.current.result;
 
     // The initial output should be exactly the same as the input data.
@@ -58,7 +58,7 @@ describe("Fuzzy search: On init", () => {
     const inputIds = data.map(({ id }) => id);
     const outputIds = output.map(({ id }) => id);
 
-    const diff = _.difference(inputIds, outputIds);
+    const diff = difference(inputIds, outputIds);
 
     // We expect a empty array because of no difference.
     expect(diff).toHaveLength(0);
@@ -67,7 +67,7 @@ describe("Fuzzy search: On init", () => {
 
 describe("Fuzzy search: When searching", () => {
   it("Should perform a search on type Number", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     // Expected data to search for. Lets grab a element by ID (1 here).
     const { id, fullName } = data.find(({ id }) => id === 1);
@@ -85,7 +85,7 @@ describe("Fuzzy search: When searching", () => {
   });
 
   it("Should perform a search on type String", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     // Grab the expected output that we want to search for.
     const { id, fullName } = data.find(({ id }) => id === 1);
@@ -102,7 +102,7 @@ describe("Fuzzy search: When searching", () => {
     expect(result.current.result[0]).toMatchObject({ id, fullName });
   });
   it("Should output a array with matches if several", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     const first = data.find(({ id }) => id === 1);
     const second = data.find(({ id }) => id === 4);
@@ -124,7 +124,7 @@ describe("Fuzzy search: When searching", () => {
   });
 
   it("Should return a empty array on empty result", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     // Do a search for a known empty result
     act(() => {
@@ -139,7 +139,7 @@ describe("Fuzzy search: When searching", () => {
   });
 
   it("Should be able to reset to initial state", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     const { fullName } = data.find(({ id }) => id === 1);
 
@@ -158,7 +158,7 @@ describe("Fuzzy search: When searching", () => {
   });
 
   it("Should expose the current search term", () => {
-    const { result } = renderHook(() => useFuzzySearch(options));
+    const { result } = renderHook(() => useFuse(options));
 
     const { fullName } = data.find(({ id }) => id === 1);
 
