@@ -6,7 +6,8 @@
   "scripts": {
     "build": "microbundle ./src/index.js --format cjs",
     "dev": "microbundle watch ./src/index.js --format cjs",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm build && npm test"
   },
   "author": {
     "name": "Martin Lindgren",
