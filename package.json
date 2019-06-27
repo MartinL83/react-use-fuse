@@ -1,6 +1,6 @@
 {
   "name": "react-use-fuse",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A tiny wrapper for the Fuse.js library fuzzy-search using React Hooks.",
   "main": "dist/index.js",
   "scripts": {
