@@ -1,5 +1,5 @@
 # react-use-fuse
-A tiny wrapper for the Fuse.js library fuzzy-search using React Hooks.
+A tiny wrapper for the fuzzy-search library [Fuse.js](https://fusejs.io) using React Hooks.
 
 ## Example usage
 ```sh
@@ -10,11 +10,17 @@ const customers = [
 ]
 
 function MyComponent({customers}){
+
+    // This is Fuse specific options. Read more at
+    // https://fusejs.io/#examples
+    const options = {
+        keys: ["name", "email"]
+    }
+
+    // Setup the Hook.
     const { result, search, term, reset } = useFuse({
         data: customers,
-        options: {
-            keys: ["name", "email"]
-        }
+        options
     });
 
     return (
