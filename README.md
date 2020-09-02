@@ -1,6 +1,8 @@
 # react-use-fuse
 A tiny wrapper for the fuzzy-search library [Fuse.js](https://fusejs.io) using React Hooks.
 
+https://www.npmjs.com/package/react-use-fuse
+
 ## Example usage
 ```sh
 
